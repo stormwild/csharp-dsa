@@ -4,7 +4,77 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Deterministic>true</Deterministic>
+
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Enable all recommended analyzers by default -->
+    <!-- More practical than 'All' mode as it avoids overly strict rules -->
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+
+    <!-- Enable .NET analyzers -->
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+
+    <!-- Enable Code analysis -->
+    <EnableCodeAnalysis>true</EnableCodeAnalysis>
+
+    <!-- Use latest analysis rules -->
+    <AnalysisLevel>latest</AnalysisLevel>
+
+    <!-- Run analyzers during build for CI/CD validation -->
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+
+    <!-- Run analyzers during development for immediate feedback -->
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+
+    <!-- Treat warnings as errors for strict quality control -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- Suppressed Warnings for Common Web API Scenarios -->
+  <PropertyGroup>
+    <!-- Disable warnings that are overly strict for typical Web API scenarios -->
+
+    <!-- Random number generator security warning -->
+    <!-- Acceptable for non-security scenarios where cryptographic randomness isn't required -->
+    <NoWarn>$(NoWarn);CA5394</NoWarn>
+
+    <!-- ConfigureAwait warning -->
+    <!-- Not needed in ASP.NET Core apps as there's no SynchronizationContext -->
+    <NoWarn>$(NoWarn);CA2007</NoWarn>
+
+    <!-- LoggerMessage delegates suggestion -->
+    <!-- While beneficial for high-performance scenarios, not critical for standard logging -->
+    <NoWarn>$(NoWarn);CA1848</NoWarn>
+
+    <!-- Internal type sealing warning -->
+    <!-- Not necessary when internal types aren't designed for inheritance -->
+    <NoWarn>$(NoWarn);CA1852</NoWarn>
+
+    <!-- Static logging template warning -->
+    <!-- Acceptable for dynamic logging messages where parameters are needed -->
+    <NoWarn>$(NoWarn);CA2254</NoWarn>
+
+    <!-- Unnecessary expression value warning -->
+    <!-- Common and acceptable with fluent API configurations -->
+    <NoWarn>$(NoWarn);IDE0058</NoWarn>
+
+    <!-- Uninstantiated internal class warning -->
+    <!-- Common with dependency injection where types are resolved at runtime -->
+    <NoWarn>$(NoWarn);CA1812</NoWarn>
+  </PropertyGroup>
+
+  <!-- Documentation Settings -->
+  <PropertyGroup>
+    <!-- Generate XML documentation file for API documentation -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- Suppress XML documentation warnings -->
+    <!-- Common in minimal APIs where documentation is less critical -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
 </Project>
