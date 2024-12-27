@@ -76,5 +76,21 @@
     <!-- Common in minimal APIs where documentation is less critical -->
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
+  <!-- Debugging and Diagnostics Settings -->
+  <PropertyGroup>
+    <!-- Source Link configuration for enhanced debugging -->
+    <EnableSourceControlManagerQueries>true</EnableSourceControlManagerQueries>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
+    <!-- Symbol package configuration for production debugging -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <!-- External Package References -->
+  <ItemGroup>
+    <!-- Version is managed centrally in Directory.Packages.props -->
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+  </ItemGroup>
 </Project>
